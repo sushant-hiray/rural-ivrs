@@ -28,24 +28,14 @@ public class HomeController {
 	private UserService userService;
 	@Autowired
 	private userRegistrationService userRegistrationService;
-	@RequestMapping(value="/register",method=RequestMethod.GET)
-	public String showForm(ModelMap model){
-        User user = new User();
-        model.addAttribute("USER", user);
-        return "register";
+	@RequestMapping("/register")
+	public ModelAndView getRegisterForm(@ModelAttribute("user") userRegistration user,
+			BindingResult result) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		System.out.println("Register Form");
+		return new ModelAndView("Register", "model", model);
 	}
 	
-	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public String processForm(@Valid @ModelAttribute(value="USER") User user,BindingResult result){
-        if(result.hasErrors()){
-                   
-                    return "register";
-        }else{
-                    System.out.println("User values is : " + user);
-                    return "saveUser";
-        }                      
-	}
-
 	@RequestMapping("/saveUser")
 	public String saveUserData(@ModelAttribute("user") userRegistration user,
 			BindingResult result) {
