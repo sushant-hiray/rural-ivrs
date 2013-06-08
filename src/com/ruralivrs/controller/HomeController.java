@@ -3,8 +3,11 @@ package com.ruralivrs.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +28,24 @@ public class HomeController {
 	private UserService userService;
 	@Autowired
 	private userRegistrationService userRegistrationService;
-	@RequestMapping("/register")
-	public ModelAndView getRegisterForm(@ModelAttribute("user") userRegistration user,
-			BindingResult result) {
-		Map<String, Object> model = new HashMap<String, Object>();
-		System.out.println("Register Form");
-		return new ModelAndView("Register", "model", model);
+	@RequestMapping(value="/register",method=RequestMethod.GET)
+	public String showForm(ModelMap model){
+        User user = new User();
+        model.addAttribute("USER", user);
+        return "register";
 	}
+	
+	@RequestMapping(value="/register",method=RequestMethod.POST)
+	public String processForm(@Valid @ModelAttribute(value="USER") User user,BindingResult result){
+        if(result.hasErrors()){
+                   
+                    return "register";
+        }else{
+                    System.out.println("User values is : " + user);
+                    return "saveUser";
+        }                      
+	}
+
 	@RequestMapping("/saveUser")
 	public ModelAndView saveUserData(@ModelAttribute("user") userRegistration user,
 			BindingResult result) {
