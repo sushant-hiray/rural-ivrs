@@ -47,11 +47,16 @@ public class HomeController {
 	}
 
 	@RequestMapping("/saveUser")
-	public ModelAndView saveUserData(@ModelAttribute("user") userRegistration user,
+	public String saveUserData(@ModelAttribute("user") userRegistration user,
 			BindingResult result) {
+		if(result.hasErrors()){
+            
+            return "register";
+		}else{
 		userRegistrationService.addUser(user);
 		System.out.println("Save userRegistration Data");
-		return new ModelAndView("redirect:/RegisterForm.html");
+		return "RegisterForm";
+		}
 		
 	}
 	@RequestMapping("/RegisterForm")

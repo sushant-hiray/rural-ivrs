@@ -13,7 +13,8 @@
 <br><br><br><br><br><br>
 <div style="color: teal;font-size: 30px">Rural Ivrs | Registration Form | Step 1</div>
 <br><br>
-<form:form id="registerForm" command="USER">
+<c:url var="userRegistration" value="saveUser.html"/>
+<form:form id="registerForm" modelAttribute="user" method="post" action="${userRegistration}">
 <table width="400px" height="150px">
 <tr>
 <td><form:label path="adminName">Name:</form:label></td>
