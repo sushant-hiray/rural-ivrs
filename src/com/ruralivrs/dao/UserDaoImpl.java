@@ -1,6 +1,5 @@
 package com.ruralivrs.dao;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -45,6 +44,12 @@ public class UserDaoImpl implements UserDao {
 		List<User> userlist = sessionfactory.getCurrentSession()
 				.createCriteria(User.class).list();
 		return userlist;
+	}
+	
+	@Override
+	public boolean checkUsername(String user) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

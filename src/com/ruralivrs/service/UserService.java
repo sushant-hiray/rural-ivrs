@@ -7,5 +7,6 @@ import com.ruralivrs.domain.User;
 public interface UserService {
 	public String addUser(User user);
 	public void addNewuser(User user);
+	public boolean checkUser(String user);
 	public List<User> getUser();
 }

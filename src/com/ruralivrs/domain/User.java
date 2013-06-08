@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "Admin_credentials")
 public class User {
@@ -23,10 +25,12 @@ public class User {
 	}
 
 	@Column(name = "username")
-	private String firstName;
+	@NotEmpty(message="User Name field is mandatory.")
+	private String firstName=null;
 
 	@Column(name = "password")
-	private String lastName;
+	@NotEmpty(message="Password field is mandatory.")
+	private String lastName=null;
 
 	/*@Column(name = "gender")
 	private String gender;

@@ -1,6 +1,5 @@
 package com.ruralivrs.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ruralivrs.domain.User;
@@ -53,17 +55,7 @@ public class HomeController {
 	@RequestMapping("/login")
 	public ModelAndView getLoginForm(@ModelAttribute("user") User user,
 			BindingResult result) {
-		//ArrayList<String> gender = new ArrayList<String>();
-		/*gender.add("Male");
-		gender.add("Female");
-		ArrayList<String> city = new ArrayList<String>();
-		city.add("Delhi");
-		city.add("Kolkata");
-		city.add("Chennai");
-		city.add("Bangalore");*/
 		Map<String, Object> model = new HashMap<String, Object>();
-		//model.put("gender", gender);
-		//model.put("city", city);
 		System.out.println("Login Form");
 		return new ModelAndView("Login", "model", model);
 	}
@@ -76,7 +68,18 @@ public class HomeController {
 		else
 		return new ModelAndView("redirect:/login.html");
 	}
+	
+	@RequestMapping(value="/checkAvailability",method=RequestMethod.GET)
+	public @ResponseBody boolean getAvailability(@RequestParam String name) {
+	    for (User a : userService.getUser()) {
+	        if (a.getFirstName().equals(name)) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
 
+	
 	@RequestMapping("/userList")
 	public ModelAndView getUserList() {
 		Map<String, Object> model = new HashMap<String, Object>();
