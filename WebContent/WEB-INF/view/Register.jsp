@@ -7,6 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Rural Ivrs | Registration Form</title>
+<style>
+.error {
+	color: #ff0000;
+}
+
+</style>
 </head>
 <body>
 <center>
@@ -15,14 +21,17 @@
 <br><br>
 <c:url var="userRegistration" value="saveUser.html"/>
 <form:form id="registerForm" modelAttribute="user" method="post" action="${userRegistration}">
+<form:errors path="*" cssClass="error" element="div"/>
 <table width="400px" height="150px">
 <tr>
 <td><form:label path="adminName">Name:</form:label></td>
 <td><form:input  path="adminName"/></td>
+<td><form:errors path="adminName" cssClass="error" /></td>
 </tr>
 <tr>
 <td><form:label path="mobileNumber">Mobile Number:</form:label></td>
 <td><form:input  path="mobileNumber"/></td>
+<td><form:errors path="mobileNumber" cssClass="error" /></td>
 </tr>
 <tr><td></td><td>
 <input type="submit" value="Register" />
