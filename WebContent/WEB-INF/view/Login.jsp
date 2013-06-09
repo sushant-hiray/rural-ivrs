@@ -14,27 +14,6 @@
 }
 
 </style>
-<script type="text/javascript" src="<c:url value="/resources/jquery-1.4.min.js" /> "></script>
-<script type="text/javascript" src="<c:url value="/resources/json.min.js" /> "></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    // check name availability on focus lost
-    $('#username').blur(function() {
-        checkAvailability();
-    });
-});
-function checkAvailability() {
-    $.getJSON("./checkAvailability", { firstName: $('#username').val() }, function(availability) {
-        if (availability) {
-            fieldValidated("firstName", { valid : true });
-        } else {
-            fieldValidated("firstName", { valid : false,
-                message : $('#username').val() + " is not available, try something different";
-        }
-    });
-}
-</script>
-
 </head>
 <body>
 <center>
@@ -43,16 +22,16 @@ function checkAvailability() {
 <br><br>
 <c:url var="userRegistration" value="checkUser.html"/>
 <form:form id="loginForm" modelAttribute="user" method="post" action="${userRegistration}">
-<form:errors path="*" cssClass="error" element="div"/>
 <table width="400px" height="150px">
 <tr>
-<td><form:label path="firstName" >First Name</form:label></td>
-<td><form:input  path="firstName" for="firstName" id="username"/></td>
-<td><form:errors path="firstName" cssClass="error" /></td>
+<td><form:label path="username" >Username</form:label></td>
+<td><form:input  path="username" for="username" id="username"/></td>
+<td><form:errors path="username" cssClass="error" /></td>
 </tr>
 <tr>
-<td><form:label path="lastName">Password</form:label></td>
-<td><form:password  path="lastName"/></td>
+<td><form:label path="password">Password</form:label></td>
+<td><form:password  path="password"/></td>
+<td><form:errors path="password" cssClass="error" /></td>
 </tr>
 <tr><td></td><td>
 <input type="submit" value="Login" />
@@ -60,7 +39,6 @@ function checkAvailability() {
 </table>
 </form:form>
 <br>
-<!--  <a href="userList.html" >Click Here to see User List</a> -->
 </center>
 </body>
 </html>

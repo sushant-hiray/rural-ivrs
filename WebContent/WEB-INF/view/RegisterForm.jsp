@@ -7,6 +7,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Rural Ivrs | Registration Form</title>
+
+<style>
+.error {
+	color: #ff0000;
+}
+.highlight { background:yellow; }
+
+</style>
+<script type="text/javascript" src="<c:url value="/resources/jquery-1.4.min.js" /> "></script>
+<script type="text/javascript" src="<c:url value="/resources/json.min.js" /> "></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    // check name availability on focus lost
+    $('#username').blur(function() {
+    	doAjax();
+       // checkAvailability();
+        
+    });
+    
+});
+
+function doAjax() {
+  $.ajax({
+    url: 'person.html',
+    data: ({name : $("#username").val()}),
+    success: function(data) {
+      $('#time').html(data);
+    }
+  });
+}
+</script>
+
+
 </head>
 <body>
 <center>
@@ -17,20 +50,22 @@
 <form:form id="registerForm2" modelAttribute="user" method="post" action="${userRegistration}">
 <table width="400px" height="150px">
 <tr>
-<td><form:label path="firstName">User Name:</form:label></td>
-<td><form:input  path="firstName"/></td>
+<td><form:label  path="username">User Name:</form:label></td>
+<td><form:input id="username" for="username" path="username"/><div id="time">
+</div></td>
+<td><form:errors path="username" cssClass="error" /></td>
 </tr>
 <tr>
-<td><form:label path="lastName">Password</form:label></td>
-<td><form:password  path="lastName"/></td>
+<td><form:label path="password">Password</form:label></td>
+<td><form:input id="password" path="password"/></td>
+<td><form:errors path="password" cssClass="error" /></td>
 </tr>
 <tr><td></td><td>
 <input type="submit" value="Confirm" />
 </td></tr>
 </table>
 </form:form>
-<br>
-<!--  <a href="userList.html" >Click Here to see User List</a> -->
+
 </center>
 </body>
 </html>

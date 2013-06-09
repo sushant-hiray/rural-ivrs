@@ -21,7 +21,6 @@
 <br><br>
 <c:url var="userRegistration" value="saveUser.html"/>
 <form:form id="registerForm" modelAttribute="user" method="post" action="${userRegistration}">
-<form:errors path="*" cssClass="error" element="div"/>
 <table width="400px" height="150px">
 <tr>
 <td><form:label path="adminName">Name:</form:label></td>

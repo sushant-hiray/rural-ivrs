@@ -26,11 +26,27 @@ public class User {
 
 	@Column(name = "username")
 	@NotEmpty(message="User Name field is mandatory.")
-	private String firstName=null;
+	private String username=null;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Column(name = "password")
 	@NotEmpty(message="Password field is mandatory.")
-	private String lastName=null;
+	private String password=null;
 
 	/*@Column(name = "gender")
 	private String gender;
@@ -38,21 +54,6 @@ public class User {
 	@Column(name = "city")
 	private String City;*/
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 /*	public String getGender() {
 		return gender;

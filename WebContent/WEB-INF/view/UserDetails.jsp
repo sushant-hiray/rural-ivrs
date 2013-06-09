@@ -15,14 +15,13 @@
 <c:if test="${!empty user}">
 <table border="1" bgcolor="black" width="600px">
 <tr style="background-color: teal;color: white;text-align: center;" height="40px">
-<td>User Id</td>
 <td>First Name</td>
 <td>Last Name</td>
 </tr>
 <c:forEach items="${user}" var="user">
 <tr style="background-color:white;color: black;text-align: center;" height="30px" >
-<td><c:out value="${user.firstName}"/></td>
-<td><c:out value="${user.lastName}"/></td>
+<td><c:out value="${user.username}"/></td>
+<td><c:out value="${user.password}"/></td>
 </tr>
 </c:forEach>
 </table>

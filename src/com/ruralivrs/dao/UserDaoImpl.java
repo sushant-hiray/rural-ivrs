@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 		String success="fail";
 		while(itr.hasNext()){
 			User u = (User)itr.next();
-			if(u.getFirstName().equals(user.getFirstName()) && u.getLastName().equals(user.getLastName()))
+			if(u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword()))
 			success="successful";
 		}
 		return success;

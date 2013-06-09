@@ -1,9 +1,12 @@
 package com.ruralivrs.domain;
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -22,9 +25,8 @@ public class userRegistration {
 	private String adminName;
 	
 	@Column(name="mobile_no")
-	@Length(max=10,min=10,message="Phone number is not valid. Should be of length 10.")
-    @NotEmpty(message="Phone field is mendatory.") @NumberFormat(style= Style.NUMBER)
-	private long mobileNumber;
+	@NotEmpty(message="Name field is mandatory.")
+	private String mobileNumber;
 	public long getId() {
 		return Id;
 	}
@@ -37,10 +39,10 @@ public class userRegistration {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	public long getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(long mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 

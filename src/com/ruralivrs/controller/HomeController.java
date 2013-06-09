@@ -1,5 +1,6 @@
 package com.ruralivrs.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,32 +32,34 @@ public class HomeController {
 	public ModelAndView getRegisterForm(@ModelAttribute("user") userRegistration user,
 			BindingResult result) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		System.out.println("Register Form");
+		System.out.println("Register-step1");
 		return new ModelAndView("Register", "model", model);
 	}
-	
+
 	@RequestMapping("/saveUser")
-	public String saveUserData(@ModelAttribute("user") userRegistration user,
+	public String saveUserData(@Valid @ModelAttribute("user") userRegistration user,
 			BindingResult result) {
 		if(result.hasErrors()){
             
-            return "register";
+            return "Register";
 		}else{
 		userRegistrationService.addUser(user);
 		System.out.println("Save userRegistration Data");
-		return "RegisterForm";
+		return "redirect:/RegisterForm.html";
 		}
-		
+
 	}
 	@RequestMapping("/RegisterForm")
 	public ModelAndView getRegisterForm2(@ModelAttribute("user") User user,
 			BindingResult result){	
+		System.out.println("Register-step2");
 		Map<String, Object> model = new HashMap<String, Object>();
 		return new ModelAndView("RegisterForm", "model", model);
 	}
 	@RequestMapping("/confirm")
 	public ModelAndView saveNewuser(@ModelAttribute("user") User user,
 			BindingResult result){
+		System.out.println("Confirm User");
 		userService.addNewuser(user);
 		return new ModelAndView("redirect:/login.html");
 	}
@@ -78,17 +80,25 @@ public class HomeController {
 		return new ModelAndView("redirect:/login.html");
 	}
 	
-	@RequestMapping(value="/checkAvailability",method=RequestMethod.GET)
-	public @ResponseBody boolean getAvailability(@RequestParam String name) {
+	@RequestMapping(value = "/time", method = RequestMethod.GET)
+	  public @ResponseBody String getTime(@RequestParam String name) {
+	    String result = "Time for " + name + " is " + new Date().toString();
+	    return result;
+	  }
+
+	@RequestMapping(value="/person",method=RequestMethod.GET)
+	public @ResponseBody String getAvailability(@RequestParam String name) {
+		System.out.println("Username received is" + name);
 	    for (User a : userService.getUser()) {
-	        if (a.getFirstName().equals(name)) {
-	            return false;
+	    	System.out.println("retreived Uername is " + a.getUsername());
+	        if (a.getUsername().equals(name)) {
+	            return "false";
 	        }
 	    }
-	    return true;
+	    return "true";
 	}
 
-	
+
 	@RequestMapping("/userList")
 	public ModelAndView getUserList() {
 		Map<String, Object> model = new HashMap<String, Object>();
