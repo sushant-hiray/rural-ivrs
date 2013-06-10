@@ -32,6 +32,11 @@
 <td><form:input  path="mobileNumber"/></td>
 <td><form:errors path="mobileNumber" cssClass="error" /></td>
 </tr>
+<tr>
+<td><form:label path="emailId">Email Id:</form:label></td>
+<td><form:input  path="emailId"/></td>
+<td><form:errors path="emailId" cssClass="error" /></td>
+</tr>
 <tr><td></td><td>
 <input type="submit" value="Register" />
 </td></tr>

@@ -57,11 +57,15 @@ public class HomeController {
 		return new ModelAndView("RegisterForm", "model", model);
 	}
 	@RequestMapping("/confirm")
-	public ModelAndView saveNewuser(@ModelAttribute("user") User user,
+	public String saveNewuser(@Valid @ModelAttribute("user") User user,
 			BindingResult result){
+		if(result.hasErrors()){
+			return "RegisterForm";
+		}else{
 		System.out.println("Confirm User");
 		userService.addNewuser(user);
-		return new ModelAndView("redirect:/register.html");
+		return "redirect:/register.html";
+		}
 	}
 	@RequestMapping("/login")
 	public ModelAndView getLoginForm(@ModelAttribute("user") User user,
@@ -75,17 +79,11 @@ public class HomeController {
 	public ModelAndView checkUserData(@ModelAttribute("user") User user,
 			BindingResult result) {
 		if(userService.addUser(user).equals("successful"))
-			return new ModelAndView("redirect:/userList.html");
+			return new ModelAndView("redirect:/Dashboard.html");
 		else
-		return new ModelAndView("redirect:/login.html");
+		return new ModelAndView("redirect:/register.html");
 	}
 	
-	@RequestMapping(value = "/time", method = RequestMethod.GET)
-	  public @ResponseBody String getTime(@RequestParam String name) {
-	    String result = "Time for " + name + " is " + new Date().toString();
-	    return result;
-	  }
-
 	@RequestMapping(value="/person",method=RequestMethod.GET)
 	public @ResponseBody String getAvailability(@RequestParam String name) {
 		System.out.println("Username received is" + name);
@@ -99,11 +97,11 @@ public class HomeController {
 	}
 
 
-	@RequestMapping("/userList")
+	@RequestMapping("/Dashboard")
 	public ModelAndView getUserList() {
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("user", userService.getUser());
-		return new ModelAndView("UserDetails", model);
+		return new ModelAndView("Dashboard");
 
 	}
+	
+	
 }

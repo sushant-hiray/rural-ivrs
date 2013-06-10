@@ -1,5 +1,4 @@
 package com.ruralivrs.domain;
-import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +24,17 @@ public class userRegistration {
 	private String adminName;
 	
 	@Column(name="mobile_no")
-	@NotEmpty(message="Name field is mandatory.")
+	@NotEmpty(message="Mobile No: field is mandatory.")
 	private String mobileNumber;
+	@Column (name="email_id")
+	@NotEmpty(message="email is mandatory")
+	private String emailId;
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 	public long getId() {
 		return Id;
 	}

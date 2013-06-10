@@ -22,7 +22,6 @@ $(document).ready(function() {
     // check name availability on focus lost
     $('#username').blur(function() {
     	doAjax();
-       // checkAvailability();
         
     });
     
@@ -35,6 +34,8 @@ function doAjax() {
     success: function(data) {
     if(data=="false")
       $('#time').html("username is not available");
+    else
+    	$('#time').html("username is available");
     }
   });
 }
