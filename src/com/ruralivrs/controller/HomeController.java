@@ -45,7 +45,7 @@ public class HomeController {
 		}else{
 		userRegistrationService.addUser(user);
 		System.out.println("Save userRegistration Data");
-		return "redirect:/RegisterForm.html";
+		return "redirect:/login.html";
 		}
 
 	}
@@ -61,7 +61,7 @@ public class HomeController {
 			BindingResult result){
 		System.out.println("Confirm User");
 		userService.addNewuser(user);
-		return new ModelAndView("redirect:/login.html");
+		return new ModelAndView("redirect:/register.html");
 	}
 	@RequestMapping("/login")
 	public ModelAndView getLoginForm(@ModelAttribute("user") User user,

@@ -33,7 +33,8 @@ function doAjax() {
     url: 'person.html',
     data: ({name : $("#username").val()}),
     success: function(data) {
-      $('#time').html(data);
+    if(data=="false")
+      $('#time').html("username is not available");
     }
   });
 }
@@ -51,7 +52,7 @@ function doAjax() {
 <table width="400px" height="150px">
 <tr>
 <td><form:label  path="username">User Name:</form:label></td>
-<td><form:input id="username" for="username" path="username"/><div id="time">
+<td><form:input id="username" for="username" path="username"/><div id="time" style="text-color:red">
 </div></td>
 <td><form:errors path="username" cssClass="error" /></td>
 </tr>

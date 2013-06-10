@@ -15,7 +15,10 @@
 
 <center>
 
-<a href="register.html">User Login Here</a><br/><br/>
+<a href="RegisterForm.html">Register Here</a>
+<br/>
+<br/>
+<a href="login.html">User Login Here</a>
 
 </center>
 </html>
