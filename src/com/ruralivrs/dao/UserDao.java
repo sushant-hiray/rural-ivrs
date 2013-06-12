@@ -9,4 +9,5 @@ public String saveUser ( User user );
 public void registerUser(User user);
 public List<User> getUser();
 public boolean checkUsername(String user);
+public User getUserfromId(long id);
 }

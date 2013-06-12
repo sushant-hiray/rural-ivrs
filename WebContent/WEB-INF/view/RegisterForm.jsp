@@ -52,15 +52,15 @@ function doAjax() {
 <form:form id="registerForm2" modelAttribute="user" method="post" action="${userRegistration}">
 <table width="400px" height="150px">
 <tr>
-<td><form:label  path="username">User Name:</form:label></td>
-<td><form:input id="username" for="username" path="username"/><div id="time" style="text-color:red">
+<td><form:label  path="admin.username">User Name:</form:label></td>
+<td><form:input id="username" for="username" path="admin.username"/><div id="time" style="text-color:red">
 </div></td>
-<td><form:errors path="username" cssClass="error" /></td>
+<td><form:errors path="admin.username" cssClass="error" /></td>
 </tr>
 <tr>
-<td><form:label path="password">Password</form:label></td>
-<td><form:input id="password" path="password"/></td>
-<td><form:errors path="password" cssClass="error" /></td>
+<td><form:label path="admin.password">Password</form:label></td>
+<td><form:input id="password" path="admin.password"/></td>
+<td><form:errors path="admin.password" cssClass="error" /></td>
 </tr>
 <tr><td></td><td>
 <input type="submit" value="Confirm" />

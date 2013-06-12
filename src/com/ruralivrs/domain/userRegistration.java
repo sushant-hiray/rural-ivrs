@@ -2,20 +2,22 @@ package com.ruralivrs.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
 @Entity
-@Table(name = "Admin_details")
+@Table(name = "admin_details")
 public class userRegistration {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="gen")
+	@GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter(name="property", value="admin"))
 	@Column(name="admin_id")
 	private long Id;
 	
@@ -29,6 +31,16 @@ public class userRegistration {
 	@Column (name="email_id")
 	@NotEmpty(message="email is mandatory")
 	private String emailId;
+	
+	@OneToOne(optional=false,fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "admin_id", referencedColumnName = "admin_id")
+    private User admin;
+	public User getAdmin() {
+		return admin;
+	}
+	public void setAdmin(User admin) {
+		this.admin = admin;
+	}
 	public String getEmailId() {
 		return emailId;
 	}

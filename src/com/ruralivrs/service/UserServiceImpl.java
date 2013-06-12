@@ -33,5 +33,10 @@ public class UserServiceImpl implements UserService {
 	public boolean checkUser(String user) {
 		return userDao.checkUsername(user);
 	}
+	@Override
+	public User getUserfromId(long id) {
+		
+		return userDao.getUserfromId(id);
+	}
 
 }

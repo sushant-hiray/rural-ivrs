@@ -9,4 +9,5 @@ public interface UserService {
 	public void addNewuser(User user);
 	public boolean checkUser(String user);
 	public List<User> getUser();
+	public User getUserfromId(long id);
 }

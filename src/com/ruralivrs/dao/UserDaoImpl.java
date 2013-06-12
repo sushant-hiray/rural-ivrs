@@ -51,5 +51,18 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	@Override
+	public User getUserfromId(long id) {
+		List<User> l = this.getUser();
+		ListIterator<User> itr=l.listIterator();
+		while(itr.hasNext()){
+			User u = (User)itr.next();
+			if(u.getId()==id){
+				return u;
+			}
+			
+		}
+		return null;
+	}
 
 }
