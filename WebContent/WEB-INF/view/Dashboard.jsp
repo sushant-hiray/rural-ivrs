@@ -12,12 +12,21 @@ $(function(){
     $(".dropdown-menu li a").click(function(){
 
       $("#lang").html($(this).text()+"&nbsp<span class='caret'></span>");
+      alert($(this).text());
+      if($(this).text()=="Manage"){
+    	  $("#Members").html("alok yadav");
+      }
 
    });
    $(".CreateG").click(function(){
 	   $("#lang").html("Language"+"&nbsp<span class='caret'></span>");
+	   var g_name = $('input[id=Gname]').val();
 	   $("#Gname").val("");
+	   
+	   var list='<li><a href="#">Inbox</a></li><li><a href="#">Approved</a></li><li><a href="#">Rejected</a></li><li><a href="#">Upload</a></li><li><a href="#">Manage</a></li>';
+	   $("#Groups").append("<div class='btn-group g_container'> <a class='btn dropdown-toggle g_button' data-toggle='dropdown' href='#'>"+g_name+"&nbsp<span class='caret'></span></a><ul class='dropdown-menu' id='group_act'>"+list+"</ul></div>");
    });
+   
 
 });
 </script>
@@ -33,6 +42,14 @@ $(function(){
         padding-bottom: 40px;
         height: 85%;
       }
+     .g_button{
+     width:80px;
+     
+     }
+     .g_container{
+     margin-top:10px;
+     margin-left:0px;
+     }
      .level2{
      height:95%;
      padding:2%;
@@ -90,11 +107,26 @@ $(function(){
     </div>
   </div>
   <div class="row-fluid mycontainer">
-    <div class="span2 level2">
+    <div id="Groups" class="span2 level2">
     <p><a data-toggle="modal" href="#example" class="btn btn-primary">Create Group</a></p>
       <!--Sidebar content-->
+      
     </div>
-    <div class="span10 level2">
+    <div id="workspace" class="span10 level2">
+    
+    <ul class="nav nav-tabs" id="myTab">
+  		<li class="active"><a href="#Members">Members</a></li>
+  		<li><a href="#Requests">Join Requests</a></li>
+  		<li><a href="#Reports">Reports</a></li>
+  		<li><a href="#settings">Settings</a></li>
+  		
+	</ul> 
+	<div class="tab-content">
+  		<div class="tab-pane active" id="Members">RuralIvrs</div>
+ 	 	<div class="tab-pane" id="Requsets"></div>
+  		<div class="tab-pane" id="Reports"></div>
+  		<div class="tab-pane" id="settings"></div>
+	</div>
       <!--Body content-->
     </div>
   </div>

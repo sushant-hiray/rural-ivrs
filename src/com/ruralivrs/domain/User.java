@@ -11,13 +11,13 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
-@Table(name = "admin_credentials")
+//@Entity
+//@Table(name = "admin_credentials")
 public class User {
 
-	@Id
-	@GeneratedValue
-	@Column(name="admin_id")
+	//@Id
+	//@GeneratedValue
+	//@Column(name="admin_id")
 	private int Id;
 	public int getId() {
 		return Id;
@@ -27,8 +27,8 @@ public class User {
 		Id = id;
 	}
 
-	@Column(name = "username")
-	@NotEmpty(message="User Name field is mandatory.")
+	//@Column(name = "username")
+	//@NotEmpty(message="User Name field is mandatory.")
 	private String username=null;
 
 	public String getUsername() {
@@ -47,12 +47,12 @@ public class User {
 		this.password = password;
 	}
 
-	@Column(name = "password")
-	@NotEmpty(message="Password field is mandatory.")
+	//@Column(name = "password")
+	//@NotEmpty(message="Password field is mandatory.")
 	private String password=null;
 	
 	
-	@OneToOne(mappedBy="admin", cascade=CascadeType.ALL)
+	//@OneToOne(mappedBy="admin", cascade=CascadeType.ALL)
 	private userRegistration userdetails;
 	public userRegistration getUserdetails() {
 		return userdetails;

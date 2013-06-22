@@ -23,7 +23,7 @@ $(document).ready(function() {
 <body>
 <center>
 <br><br><br><br><br><br>
-<div style="color: teal;font-size: 30px">Rural Ivrs | Registration Form | Step 1</div>
+<div style="color: teal;font-size: 30px">Rural Ivrs | Registration Form | Step 2</div>
 <br><br>
 <c:url var="userreg" value="saveUser.html"/>
 <jsp:setProperty name="user" property="id" value="${id}"/>

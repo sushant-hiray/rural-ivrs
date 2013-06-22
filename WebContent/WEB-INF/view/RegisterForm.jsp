@@ -46,7 +46,7 @@ function doAjax() {
 <body>
 <center>
 <br><br><br><br><br><br>
-<div style="color: teal;font-size: 30px">Rural IVRS | Register | Step 2</div>
+<div style="color: teal;font-size: 30px">Rural IVRS | Register | Step 1</div>
 <br><br>
 <c:url var="userRegistration" value="confirm.html"/>
 <form:form id="registerForm2" modelAttribute="user" method="post" action="${userRegistration}">
