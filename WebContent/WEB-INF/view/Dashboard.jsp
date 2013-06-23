@@ -7,15 +7,11 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/rural-ivrs/resources/bootstrap.js"> </script>
 <script>
-$(function(){
+$(document).ready(function() {
 
-    $(".dropdown-menu li a").click(function(){
+   $(".dropdown-menu li a").click(function(){
 
-      $("#lang").html($(this).text()+"&nbsp<span class='caret'></span>");
-      alert($(this).text());
-      if($(this).text()=="Manage"){
-    	  $("#Members").html("alok yadav");
-      }
+     $("#lang").html($(this).text()+"&nbsp<span class='caret'></span>");
 
    });
    $(".CreateG").click(function(){
@@ -23,10 +19,22 @@ $(function(){
 	   var g_name = $('input[id=Gname]').val();
 	   $("#Gname").val("");
 	   
-	   var list='<li><a href="#">Inbox</a></li><li><a href="#">Approved</a></li><li><a href="#">Rejected</a></li><li><a href="#">Upload</a></li><li><a href="#">Manage</a></li>';
-	   $("#Groups").append("<div class='btn-group g_container'> <a class='btn dropdown-toggle g_button' data-toggle='dropdown' href='#'>"+g_name+"&nbsp<span class='caret'></span></a><ul class='dropdown-menu' id='group_act'>"+list+"</ul></div>");
+	   var list='<li><a href="#">Inbox</a></li><li><a href="#">Approved</a></li><li><a href="#">Rejected</a></li><li><a id= "upload" href="#upload">Upload</a></li><li><a href="#">Manage</a></li>';
+	   $("#Groups").append("<div class='btn-group g_container'> <a id='group-setting' class='btn dropdown-toggle g_button' data-toggle='dropdown' href='#'>"+g_name+"&nbsp<span class='caret'></span></a><ul class='dropdown-menu' id='group_act'>"+list+"</ul></div>");
    });
    
+   /* $("#group-act").change(function() {
+	   var currentId = $(this).attr('id');
+	   switch(currentId) {
+	   case 'upload':
+		   alert("Hello WOlrd uplosd");
+		   break;
+	   };
+   }); */
+   
+   $("#Groups").on('click', 'a[href^="#upload"]', function() {
+	   $("#Uploader").modal("show");
+   });   
 
 });
 </script>
@@ -152,12 +160,29 @@ $(function(){
     </div>    
 </form>        
 </div>  
-
 <div class="modal-footer">  
 <a href="#"  class="btn btn-success CreateG">Create</a>  
-<a href="#" class="btn CreateG" data-dismiss="modal">Cancel</a>  
+<a href="#" class="btn" data-dismiss="modal">Cancel</a>  
 </div>  
 </div>  
-  
+<div id="Uploader" class="modal hide fade in"  style="display: none; ">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+  		<span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+  		<span class="fileupload-preview"></span>
+  		<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+	</div>
+    
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>  
 </body>
 </html>
