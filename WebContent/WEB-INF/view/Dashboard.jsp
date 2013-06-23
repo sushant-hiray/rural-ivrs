@@ -19,7 +19,7 @@ $(document).ready(function() {
 	   var g_name = $('input[id=Gname]').val();
 	   $("#Gname").val("");
 	   
-	   var list='<li><a href="#">Inbox</a></li><li><a href="#">Approved</a></li><li><a href="#">Rejected</a></li><li><a id= "upload" href="#upload">Upload</a></li><li><a href="#">Manage</a></li>';
+	   var list='<li><a href="#">Inbox</a></li><li><a href="#">Approved</a></li><li><a href="#">Rejected</a></li><li><a id= "upload" href="#upload">Upload</a></li><li><a href="#manage">Manage</a></li>';
 	   $("#Groups").append("<div class='btn-group g_container'> <a id='group-setting' class='btn dropdown-toggle g_button' data-toggle='dropdown' href='#'>"+g_name+"&nbsp<span class='caret'></span></a><ul class='dropdown-menu' id='group_act'>"+list+"</ul></div>");
    });
    
@@ -34,7 +34,14 @@ $(document).ready(function() {
    
    $("#Groups").on('click', 'a[href^="#upload"]', function() {
 	   $("#Uploader").modal("show");
-   });   
+   });
+   $("#Groups").on('click', 'a[href^="#manage"]', function() {
+	  var code='<ul class="nav nav-tabs" id="myTab"><li class="active"><a href="#Members">Members</a></li><li><a href="#Requests">Join Requests</a></li>';
+   		code+='<li><a href="#Reports">Reports</a></li><li><a href="#settings">Settings</a></li></ul>';
+   		code+='<div class="tab-content"><div class="tab-pane active" id="Members">RuralIvrs</div><div class="tab-pane" id="Requsets"></div>';
+   		code+='<div class="tab-pane" id="Reports"></div><div class="tab-pane" id="settings"></div></div>';
+   		$('#workspace').html(code);
+   }); 
 
 });
 </script>
@@ -121,20 +128,7 @@ $(document).ready(function() {
       
     </div>
     <div id="workspace" class="span10 level2">
-    
-    <ul class="nav nav-tabs" id="myTab">
-  		<li class="active"><a href="#Members">Members</a></li>
-  		<li><a href="#Requests">Join Requests</a></li>
-  		<li><a href="#Reports">Reports</a></li>
-  		<li><a href="#settings">Settings</a></li>
-  		
-	</ul> 
-	<div class="tab-content">
-  		<div class="tab-pane active" id="Members">RuralIvrs</div>
- 	 	<div class="tab-pane" id="Requsets"></div>
-  		<div class="tab-pane" id="Reports"></div>
-  		<div class="tab-pane" id="settings"></div>
-	</div>
+ 
       <!--Body content-->
     </div>
   </div>
@@ -172,16 +166,12 @@ $(document).ready(function() {
   </div>
   <div class="modal-body">
     
-    <div class="fileupload fileupload-new" data-provides="fileupload">
-  		<span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-  		<span class="fileupload-preview"></span>
-  		<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
-	</div>
+    <input type="file" name="myfiles" multiple="multiple">
     
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="#" class="btn btn-success">Save changes</a>
   </div>
 </div>  
 </body>
